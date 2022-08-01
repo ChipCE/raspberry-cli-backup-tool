@@ -1,6 +1,8 @@
 #!/bin/bash
 
-echo "Revolution image restore tool v1.0"
+echo "RPi image restore tool v1.0"
+
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # set revpi to boot mode
 if [[ $1 == "-b" ]] ; then
@@ -22,9 +24,9 @@ do
 done
 
 echo ""
-echo "Available image(s):"
+echo "Available files(s):"
 # list image
-ls ~/Backup/*.img  | xargs -n 1 basename | sed -e 's/\.img$//'
+ls "$CURRENT_DIR/Backup"
 
 echo ""
 BACKUP_NAME=""
@@ -38,7 +40,7 @@ done
 # also check for md5sum?
 echo ""
 echo "Checking checksum of $BACKUP_NAME.img"
-CHECKSUM_RESULT=($(md5sum --check ~/Backup/$BACKUP_NAME.md5))
+CHECKSUM_RESULT=($(md5sum --check "$CURRENT_DIR/Backup/$BACKUP_NAME.md5"))
 if [[ $CHECKSUM_RESULT == *": OK"* ]]; then
     echo "Checksum : OK"
 else
@@ -48,7 +50,7 @@ fi
 
 echo ""
 echo "Writing image $BACKUP_NAME.img to $TARGET_DISK ..."
-sudo dd bs=4M if=~/Backup/$BACKUP_NAME.img of=/dev/$TARGET_DISK
+sudo dd bs=4M if="$CURRENT_DIR/Backup/$BACKUP_NAME" of=/dev/$TARGET_DISK
 
 echo ""
 echo "Done!"

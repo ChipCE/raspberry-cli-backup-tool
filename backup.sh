@@ -1,5 +1,7 @@
 #!/bin/bash
-echo "Revolution pi image backup tool v1.0"
+echo "RPi image backup tool v1.0"
+
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # set revpi to boot mode
 if [[ $1 == "-b" ]] ; then
@@ -35,17 +37,17 @@ done
 echo ""
 
 echo "Making ouput folder..."
-mkdir ~/Backup
+mkdir -p "$CURRENT_DIR/Backup"
 
 echo ""
 echo "Making backup, please wait..."
 echo "Disk : $TARGET_DISK"
-echo "Ouput file : $BACKUP_NAME.img"
-sudo dd if=/dev/$TARGET_DISK of=~/Backup/$BACKUP_NAME.img
+echo "Ouput file : $BACKUP_NAME"
+sudo dd if=/dev/$TARGET_DISK of="$CURRENT_DIR/Backup/$BACKUP_NAME"
 
 echo ""
 echo "Caculating md5 checksum of $BACKUP_NAME.img" 
-md5sum ~/Backup/$BACKUP_NAME.img >> ~/Backup/$BACKUP_NAME.md5
+md5sum "$CURRENT_DIR/Backup/$BACKUP_NAME" >> ~/Backup/$BACKUP_NAME.md5
 
 echo ""
 

@@ -47,7 +47,7 @@ sudo dd if=/dev/$TARGET_DISK of="$CURRENT_DIR/Backup/$BACKUP_NAME"
 
 echo ""
 echo "Caculating md5 checksum of $BACKUP_NAME.img" 
-md5sum "$CURRENT_DIR/Backup/$BACKUP_NAME" >> ~/Backup/$BACKUP_NAME.md5
+md5sum "$CURRENT_DIR/Backup/$BACKUP_NAME" >> "$CURRENT_DIR/Backup/$BACKUP_NAME.md5"
 
 echo ""
 

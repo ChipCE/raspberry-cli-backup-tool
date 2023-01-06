@@ -16,11 +16,11 @@ lsblk
 
 echo ""
 TARGET_DISK=""
-read -p "Enter target disk name (ex: sda) : " TARGET_DISK
+read -p "Enter target disk name (E.g. /dev/sda) : " TARGET_DISK
 while [[ "$TARGET_DISK" == "" ]]
 do
     echo "Error : invalid target disk name! $TARGET_DISK"
-    read -p "Enter target device Enter target disk name (ex: sda) : " TARGET_DISK
+    read -p "Enter target disk name (E.g. /dev/sda) : " TARGET_DISK
 done
 
 echo ""
@@ -50,7 +50,7 @@ fi
 
 echo ""
 echo "Writing image $BACKUP_NAME.img to $TARGET_DISK ..."
-sudo dd bs=4M if="$CURRENT_DIR/Backup/$BACKUP_NAME" of=/dev/$TARGET_DISK
+sudo dd bs=4M if="$CURRENT_DIR/Backup/$BACKUP_NAME" of=$TARGET_DISK
 
 echo ""
 echo "Done!"

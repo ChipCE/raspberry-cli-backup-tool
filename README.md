@@ -6,5 +6,5 @@
 
 ## Usage
 
-- <code>./backup.sh</code> to execute the backup script or <code>./backup.sh -s</code> to call [PiShrink by Drewsif](https://github.com/Drewsif/PiShrink) to generate shrink shrink backup image.
+- <code>./backup.sh</code> to execute the backup script or <code>./backup.sh -s</code> to back up and call [PiShrink by Drewsif](https://github.com/Drewsif/PiShrink) to shrink the backed up image.
 - <code>./restore.sh</code> to restore the image. You can also use any other 3rd party image burner like [Etcher](https://www.balena.io/etcher/) or [Win32DiskImager](https://sourceforge.net/projects/win32diskimager/files/latest/download).
